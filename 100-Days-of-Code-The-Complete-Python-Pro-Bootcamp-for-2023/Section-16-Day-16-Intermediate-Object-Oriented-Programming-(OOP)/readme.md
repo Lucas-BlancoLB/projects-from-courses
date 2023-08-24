@@ -1,1 +1,1 @@
-My first project using OOP - oriented programming
+ My first project using OOP - Object-oriented programming
