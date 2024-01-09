@@ -3,7 +3,8 @@ import tkinter as tk
 # creating a window and configurations
 window = tk.Tk()
 window.title("Widget | GUI program")
-window.minsize(width=500, height=300)
+window.geometry("500x455+30+100")
+window.minsize(width=500, height=455)
 
 # Labels
 
@@ -87,16 +88,47 @@ radio_button2 = tk.Radiobutton(text="Option2", value=2, variable=radio_state, co
 radio_button1.pack(), radio_button2.pack()
 
 
-#Listbox
+# Listbox
 def listbox_used(event):  # event is linked with <ListboxSelect>>
     # Gets current selection from listbox
     print(listbox.get(listbox.curselection()))
 
 
 listbox = tk.Listbox(height=4)
-fruits = ["Apple","Pear", "Orange", "Banana"]
+fruits = ["Apple", "Pear", "Orange", "Banana"]
 for item in fruits:
     listbox.insert(tk.END, item)
-listbox.bind("<<ListboxSelect>>", func=listbox_used)  #<<ListboxSelect>> linked with event in func=listbox_used
+listbox.bind("<<ListboxSelect>>", func=listbox_used)  # <<ListboxSelect>> linked with event in func=listbox_used
 listbox.pack()
+
+
+#
+###
+#
+
+
+root = tk.Tk()
+root.minsize(width=500, height=300)
+root.title("New window")
+root.geometry("+1380+100")
+root.config(padx=100, pady=200)  # add to root the window
+
+def button_used_2():
+    label2["text"] = entry2.get()
+
+
+label2 = tk.Label(master=root, text="Hey me", font=("Arial", 24, "bold")) # master= to reference to another window
+label2.grid(column=0, row=0)
+label2.config(padx=50, pady=15) # add space to the widget
+
+entry2 = tk.Entry(master=root, width=15)
+entry2.insert(string="type something here bruh", index=tk.END)
+entry2.grid(column=3, row=3)
+
+button2 = tk.Button(master=root, text="Press me", command=button_used_2)
+button2.grid(column=1, row=1)
+
+button3 = tk.Button(master=root, text="stupid_button")
+button3.grid(column=2, row=0)
 window.mainloop()
+
