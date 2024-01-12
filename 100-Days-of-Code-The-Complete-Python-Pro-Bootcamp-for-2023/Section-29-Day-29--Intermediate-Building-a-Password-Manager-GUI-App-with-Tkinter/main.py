@@ -1,16 +1,31 @@
 import tkinter as tk
-
+import json
+passwords_saved = {"site":{"login": "password", "login2": "password2"},
+                   "site2":{"login": "password"}}
 FONT_NAME = "Courier"
 entries_list =[]
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
+json_data = json.dumps(passwords_saved)
+with open("passwords_saved.txt", mode="w") as file:
+    file.write(json_data)
+print(json_data)
 def saving_password():
-    passwords_saved = {"site":{"login": "password"}}
+
 
     site, login, code = entries_list[0].get(), entries_list[1].get(), entries_list[2].get()
-
-#
+    if site in passwords_saved:
+        if code in passwords_saved[site]:
+            print(passwords_saved)
+            pass
+        else:
+            passwords_saved[site][login] = code
+            print(passwords_saved)
+    else:
+        passwords_saved[site] = {login: code}
+        print(passwords_saved)
 # with open("passwords_saved.txt", mode="w") as file:
 #     # str_passwords_saved = str(passwords_saved)
 #     file.write()
