@@ -1,31 +1,40 @@
 import tkinter as tk
-import json
-passwords_saved = {"site":{"login": "password", "login2": "password2"},
-                   "site2":{"login": "password"}}
+from tkinter import messagebox
+import ast
+# {"site":{"login": "password"}}
+# passwords_saved = {"site":{"login": "password", "login2": "password2"},
+#                    "site2":{"login": "password"}}
 FONT_NAME = "Courier"
 entries_list =[]
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
-json_data = json.dumps(passwords_saved)
-with open("passwords_saved.txt", mode="w") as file:
-    file.write(json_data)
-print(json_data)
+
+
 def saving_password():
-
-
+    with open("passwords_saved.txt", mode="r") as file:
+        rd_data = file.read()
+        passwords_saved = ast.literal_eval(rd_data)
     site, login, code = entries_list[0].get(), entries_list[1].get(), entries_list[2].get()
+    # check if the key is in the dictionary
     if site in passwords_saved:
-        if code in passwords_saved[site]:
-            print(passwords_saved)
+        #check if the value is in dictionary[KEY][key*] - key* is the key for dict in dict e.g. {KEY:{key*:value}}
+        if code in passwords_saved[site][login]:
             pass
+
         else:
             passwords_saved[site][login] = code
-            print(passwords_saved)
+            wr_data = open("passwords_saved.txt", mode="w")
+            wr_data.write(str(passwords_saved))
+            wr_data.close()
+    # if not then add a new key with new values
     else:
         passwords_saved[site] = {login: code}
-        print(passwords_saved)
+        wr_data = open("passwords_saved.txt", mode="w")
+        wr_data.write(str(passwords_saved))
+        wr_data.close()
+    entries_list[0].delete(0, tk.END), entries_list[1].delete(0, tk.END), entries_list[2].delete(0, tk.END)
 # with open("passwords_saved.txt", mode="w") as file:
 #     # str_passwords_saved = str(passwords_saved)
 #     file.write()
