@@ -88,8 +88,8 @@ finally:  # If it succeeds or its failure. It will run
 
 ##
 
-height = float(input("Height: "))
-weight = int(input("Weight: "))
+height = 3  # float(input("Height: "))
+weight = 2  # int(input("Weight: "))
 
 if height > 3:
     raise ValueError("Human height shouldn't be over 3 meters.")
@@ -97,3 +97,45 @@ if height > 3:
 bmi = pow(weight / height, 2)
 print(bmi)
 
+#
+##
+#
+
+# Exercise 1
+fruits = ["Chicken and Leek", "Cheese and Onion", "Steak", "Fish", "Shepherd's"]
+
+
+# 🚨 Do not change the code above
+
+# TODO: Catch the exception and make sure the code runs without crashing.
+def make_pie(index):
+    try:
+        fruit = fruits[index]
+        print(fruit + " pie")
+    except IndexError:
+        print("Fruit pie")
+
+
+# 🚨 Do not change the code below
+make_pie(4)
+
+
+# Exercise 2
+# eval() function will create a list of dictionaries using the input
+facebook_posts = [{'Likes': 21, 'Comments': 2}, {'Likes': 13, 'Comments': 2, 'Shares': 1},
+                  {'Likes': 33, 'Comments': 8, 'Shares': 3}, {'Comments': 4, 'Shares': 2},
+                  {'Comments': 1, 'Shares': 1}, {'Likes': 19, 'Comments': 3}]
+
+total_likes = 0
+# TODO: Catch the KeyError exception
+
+
+for post in facebook_posts:
+
+    try:
+        total_likes = total_likes + post['Likes']
+    except KeyError as error:
+        pass
+    # facebook_posts_v2 = [x if "Likes" in x else x.update({"Likes": 0}) for x in facebook_posts] # doesn't return None
+    # facebook_posts_v3 = [x.get("Likes", 0) for x in facebook_posts]
+print(total_likes)
