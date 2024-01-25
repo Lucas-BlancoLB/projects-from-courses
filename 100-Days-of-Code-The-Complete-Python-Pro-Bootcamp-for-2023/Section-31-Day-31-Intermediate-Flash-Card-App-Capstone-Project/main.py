@@ -34,15 +34,29 @@ def convert_to_csv():
 convert_to_csv()
 # -------------------------------- Data manipulation --------------------------------
 df = pd.read_csv("5k most used.csv", index_col=0)
+
 def random_data_row():
     num = randint(0, 4874)
     return df.iloc[num]["English"], df.iloc[num]["Meaning"]
 
-def check_button():
+def check_button_pressed():
     word, _ = random_data_row()
-    canvas.itemconfig(image=canvas_image)
+    canvas.itemconfig(card_back ,image=canvas_image)
     text_label.config(text=word), front_label.config(text="English")
 
+def wrong_button_pressed():
+    word, _ = random_data_row()
+    canvas.itemconfig(canvas_image, image=card_back)
+    text_label.config(text=word), front_label.config(text="English")
+
+def view_button_pressed():
+
+    var = text_label["text"].lower()
+    mask = df["English"] == var
+    # mask = df.loc[df["English"] == var]
+    var1, var2 = df[mask].values()
+    print(var2)
+    # print(var)
 # -------------------------------- Formatting text --------------------------------
 def formatted_text(max_len, text):
     words = text.split()
@@ -99,15 +113,15 @@ frame.grid(row=1, column=0)
 
 
 image_right = ImageTk.PhotoImage(file="images/right.png")
-right_button = tk.Button(master=frame ,image=image_right,  borderwidth=0, highlightthickness=0, activebackground=BACKGROUND_COLOR, command=check_button)
+right_button = tk.Button(master=frame ,image=image_right,  borderwidth=0, highlightthickness=0, activebackground=BACKGROUND_COLOR, command=check_button_pressed)
 right_button.grid(row=0, column=0, padx=50 )
 
 image_view =ImageTk.PhotoImage(file="images/view-button.png")
-view_button = tk.Button(master=frame, image=image_view, borderwidth=0, highlightthickness=0, bg=BACKGROUND_COLOR ,activebackground=BACKGROUND_COLOR)
+view_button = tk.Button(master=frame, image=image_view, borderwidth=0, highlightthickness=0, bg=BACKGROUND_COLOR ,activebackground=BACKGROUND_COLOR, command=view_button_pressed)
 view_button.grid(row=0,column=1, padx=50)
 
 image_wrong = ImageTk.PhotoImage(file="images/wrong.png")
-wrong_button = tk.Button(master=frame, image=image_wrong, borderwidth=0, highlightthickness=0, activebackground=BACKGROUND_COLOR)
+wrong_button = tk.Button(master=frame, image=image_wrong, borderwidth=0, highlightthickness=0, activebackground=BACKGROUND_COLOR, command=wrong_button_pressed)
 wrong_button.grid(row=0,column=2, padx=50)
 
 
