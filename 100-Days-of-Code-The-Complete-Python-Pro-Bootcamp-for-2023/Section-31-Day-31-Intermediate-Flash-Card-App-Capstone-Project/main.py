@@ -52,10 +52,12 @@ def wrong_button_pressed():
 def view_button_pressed():
 
     var = text_label["text"].lower()
-    mask = df["English"] == var
+    mask = df[df["English"] == var.lower()]
+    print(mask)
+    # print(df["English"][mask].item())
     # mask = df.loc[df["English"] == var]
-    var1, var2 = df[mask].values()
-    print(var2)
+    # var1, var2 = df[mask].values()
+    # print(var2)
     # print(var)
 # -------------------------------- Formatting text --------------------------------
 def formatted_text(max_len, text):
