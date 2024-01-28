@@ -8,16 +8,23 @@ BACKGROUND_COLOR = "#B1DDC6"
 
 def find_max_len_in_line(path):
     biggest_str = ""
+    word_str = ""
     with open(path) as file:
         lines = file.read().splitlines()
 
         # max_len takes the biggest value (len) from the lines
         max_len = max(len(x) for x in lines)
+        for i in range(1,len(lines), 2):
+            if i % 2 == 0: print(True)
 
+            line = lines[i]
+            if len(line) > len(word_str):
+                word_str = line
         for line in lines:
+
             if len(line) > len(biggest_str):
                 biggest_str = line
-        print(max_len, biggest_str)
+        print(max_len, word_str ,biggest_str)
 
 # find_max_len_in_line("text.txt")
 
@@ -42,23 +49,23 @@ def random_data_row():
 def check_button_pressed():
     word, _ = random_data_row()
     canvas.itemconfig(card_back ,image=canvas_image)
-    text_label.config(text=word), front_label.config(text="English")
+    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="English")
 
 def wrong_button_pressed():
     word, _ = random_data_row()
     canvas.itemconfig(canvas_image, image=card_back)
-    text_label.config(text=word), front_label.config(text="English")
+    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="English")
 
 def view_button_pressed():
 
     var = text_label["text"].lower()
     mask = df[df["English"] == var.lower()]
-    print(mask)
-    # print(df["English"][mask].item())
-    # mask = df.loc[df["English"] == var]
-    # var1, var2 = df[mask].values()
-    # print(var2)
-    # print(var)
+    for  row in mask.itertuples(index=False):
+        word, mean = row.English, row.Meaning
+    
+    text_label.config(text=formatted_text(50, mean), font=("Arial", 20, "bold")), front_label.config(text=word)
+
+
 # -------------------------------- Formatting text --------------------------------
 def formatted_text(max_len, text):
     words = text.split()
@@ -106,7 +113,7 @@ front_label.place(x=400, y=75, anchor=tk.CENTER)
 
 
 
-text_label = tk.Label(master=canvas, text="Be",font=("Ariel", 60, "bold") ,bg="white")
+text_label = tk.Label(master=canvas, text="Be",font=("Arial", 60, "bold") ,bg="white")
 text_label.place(x=400, y=263, anchor=tk.CENTER)
 
 # Frame for buttons
