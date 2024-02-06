@@ -1,5 +1,6 @@
 Project from Udemy — 100 Days of Code: The Complete Python Pro Bootcamp for 2023
 
+LINK: https://www.udemy.com/course/100-days-of-code/
 
 By the numbers
     Skill level: All Levels
