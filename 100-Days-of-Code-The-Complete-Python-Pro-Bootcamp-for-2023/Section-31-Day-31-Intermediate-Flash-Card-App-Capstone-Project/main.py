@@ -3,7 +3,6 @@ import tkinter as tk
 from random import randint
 from PIL import ImageTk
 BACKGROUND_COLOR = "#B1DDC6"
-
 # -------------------------------- import data n create csv --------------------------------
 
 def find_max_len_in_line(path):
@@ -40,7 +39,9 @@ def convert_to_csv():
 
 convert_to_csv()
 # -------------------------------- Data manipulation --------------------------------
+meaning_on_screen = True
 df = pd.read_csv("5k most used.csv", index_col=0)
+
 
 def random_data_row():
     num = randint(0, 4874)
@@ -48,22 +49,24 @@ def random_data_row():
 
 def check_button_pressed():
     word, _ = random_data_row()
-    canvas.itemconfig(card_back ,image=canvas_image)
-    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="English")
+    canvas.itemconfig(backgroundImg ,image=canvas_image)
+    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="ENGLISH")
 
 def wrong_button_pressed():
     word, _ = random_data_row()
-    canvas.itemconfig(canvas_image, image=card_back)
-    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="English")
+    # canvas_image1 = canvas_image()
+    back_card1 = back_card()
+    canvas.itemconfig(backgroundImg, image=back_card1)
+    text_label.config(text=word, font=("Ariel", 60, "bold")), front_label.config(text="ENGLISH")
 
 def view_button_pressed():
+    if front_label["text"] == "ENGLISH":
+        var = text_label["text"].lower()
+        mask = df[df["English"] == var.lower()]
+        for  row in mask.itertuples(index=False):
+            word, mean = row.English, row.Meaning
 
-    var = text_label["text"].lower()
-    mask = df[df["English"] == var.lower()]
-    for  row in mask.itertuples(index=False):
-        word, mean = row.English, row.Meaning
-    
-    text_label.config(text=formatted_text(50, mean), font=("Arial", 20, "bold")), front_label.config(text=word)
+        text_label.config(text=formatted_text(50, mean), font=("Arial", 20, "bold")), front_label.config(text=word)
 
 
 # -------------------------------- Formatting text --------------------------------
@@ -88,7 +91,7 @@ def meaning_label():
     text = "LMAOO"
     formatted_str = formatted_text(num, text)
 
-    canvas.create_image((0,0), anchor=tk.NW, image=card_back)
+    canvas.create_image((0,0), anchor=tk.NW, image=back_card())
     front_label.config(text=word)
     text_label.config(text=formatted_str, font=("Ariel", 20, "bold"))
 
@@ -102,13 +105,19 @@ root.title("English Flashcard")
 root.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
 
 # canvas
-card_back = ImageTk.PhotoImage(file="images/card_back.png")
-canvas_image = ImageTk.PhotoImage(file="images/card_front.png")
+def back_card():
+    card_back = ImageTk.PhotoImage(file="images/card_back.png")
+    return card_back
+def canvas_image():
+    canvas_image = ImageTk.PhotoImage(file="images/card_front.png")
+    return canvas_image
+canvas_image = canvas_image()
+print(canvas_image)
 canvas = tk.Canvas(width=canvas_image.width(), height=canvas_image.height(), bg=BACKGROUND_COLOR, highlightthickness=0)
-canvas.create_image(0,0, anchor=tk.NW ,image=canvas_image)
+backgroundImg = canvas.create_image(0,0, anchor=tk.NW ,image=canvas_image)
 canvas.grid(row=0, column=0)
 
-front_label = tk.Label(master=canvas, text="English", font=("Ariel", 40, "italic"), bg="white")
+front_label = tk.Label(master=canvas, text="ENGLISH", font=("Ariel", 40, "italic"), bg="white")
 front_label.place(x=400, y=75, anchor=tk.CENTER)
 
 
