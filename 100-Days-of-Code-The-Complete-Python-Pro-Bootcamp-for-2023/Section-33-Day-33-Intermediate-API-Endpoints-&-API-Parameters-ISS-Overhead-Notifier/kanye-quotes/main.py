@@ -6,8 +6,6 @@ def get_quote():
         response.raise_for_status()
         data = response.json()
         canvas.itemconfig(quote_text, text=data["quote"])
-    #Write your code here.
-
 
 
 window = Tk()
@@ -23,7 +21,6 @@ canvas.grid(row=0, column=0)
 kanye_img = PhotoImage(file="kanye.png")
 kanye_button = Button(image=kanye_img, highlightthickness=0, command=get_quote, bg="#90EE90", activebackground="#90EE90", border=0)
 kanye_button.grid(row=1, column=0)
-
 
 
 window.mainloop()
