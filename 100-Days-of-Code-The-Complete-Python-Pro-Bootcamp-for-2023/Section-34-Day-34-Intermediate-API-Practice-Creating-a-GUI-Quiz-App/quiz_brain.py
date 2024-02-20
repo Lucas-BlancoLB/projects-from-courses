@@ -14,20 +14,14 @@ class QuizBrain:
         self.current_question = self.question_list[q_num]
         self.question_number += 1
         q_text = html.unescape(self.current_question.text)
-        # user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ")
+
         return  self.question_number, q_text
-        # self.check_answer(user_answer)
+
 
     def check_answer(self, user_answer):
-        correct_answer = bool(self.current_question.answer)
-        print(user_answer, correct_answer)
-        if bool(user_answer) == correct_answer:
-            print(1)
+
+        if str(user_answer) == self.current_question.answer:
             self.score += 1
             return True
         else:
-            print(2)
             return  False
-
-        # print(f"Your current score is: {self.score}/{self.question_number}")
-        # print("\n")
