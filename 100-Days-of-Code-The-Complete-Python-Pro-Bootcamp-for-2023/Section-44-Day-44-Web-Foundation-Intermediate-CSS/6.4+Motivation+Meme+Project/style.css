@@ -1,0 +1,11 @@
+body {background-color: black;}
+
+img {
+    display: block; margin-left: auto; margin-right: auto;
+    margin-top:10%;
+    border: 2px solid lightyellow;
+}
+
+h1 {font-family: 'Libre Baskerville', serif; font-size: 45px; text-transform: uppercase;}
+.text {color: lightyellow; text-align: center;}
+p {font-size: larger;}
