@@ -24,18 +24,9 @@ class_="athing"
 # class_="titleline"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+#
+###
+#
 
 
 # with open("website.html", encoding="utf-8") as file:
