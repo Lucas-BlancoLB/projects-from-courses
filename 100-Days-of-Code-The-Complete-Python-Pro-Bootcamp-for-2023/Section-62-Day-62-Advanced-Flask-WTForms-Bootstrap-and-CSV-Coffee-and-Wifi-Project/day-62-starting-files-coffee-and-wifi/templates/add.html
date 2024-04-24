@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <!-- Render each form field individually with Bootstrap 5 styling -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          {{ form.name(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="URL" class="form-label">URL</label>
+          {{ form.URL(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="open" class="form-label">Open</label>
+          {{ form.open(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="close" class="form-label">Close</label>
+          {{ form.close(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          {{ form.rating(class="form-select") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="wifi" class="form-label">Wi-Fi</label>
+          {{ form.wifi(class="form-select") }}
+        </div>
+
+        <div class="mb-3">
+          <label for="power_rating" class="form-label">Power Rating</label>
+          {{ form.power_rating(class="form-select") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+	  <p class="space-above"><a href="#">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
