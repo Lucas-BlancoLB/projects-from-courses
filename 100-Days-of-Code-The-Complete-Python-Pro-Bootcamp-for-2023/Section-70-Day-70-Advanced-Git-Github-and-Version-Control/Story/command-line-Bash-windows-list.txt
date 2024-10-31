@@ -1,0 +1,81 @@
+File and Directory Management
+
+    ls - List directory contents.
+    cd - Change directory.py
+    pwd - Print working directory.
+    mkdir - Create a new directory.
+    rmdir - Remove empty directory.
+    rm - Remove files or directories.
+    cp - Copy files or directories.
+    mv - Move or rename files or directories.
+    touch - Create an empty file or update the timestamp of a file.
+    cat - Concatenate and display file content.
+    less - View file content one page at a time.
+    head - Display the first few lines of a file.
+    tail - Display the last few lines of a file.
+    start - Open a file or folder with the associated application (Windows-specific).
+
+File Permissions (Note: Limited Use in Windows)
+
+    chmod - Change file permissions (has limited impact on Windows).
+    chown - Change file owner and group (mostly relevant in WSL/Linux environments).
+    chgrp - Change group ownership (mostly relevant in WSL/Linux environments).
+
+Process Management
+
+    ps - Display current processes.
+    top - Display active processes.
+    kill - Terminate a process by PID.
+    killall - Terminate processes by name.
+    bg - Resume a job in the background.
+    fg - Bring a job to the foreground.
+
+System Information
+
+    uname - Display system information.
+    df - Report file system disk space usage.
+    du - Estimate file space usage.
+    free - Display memory usage.
+    uptime - Show how long the system has been running.
+    who - Show who is logged on.
+    hostname - Show or set the system's hostname.
+
+Networking
+
+    ping - Send ICMP echo request to network hosts.
+    ifconfig - Display or configure network interfaces.
+    wget - Retrieve files from the web.
+    curl - Transfer data from or to a server.
+    ssh - Secure Shell for remote login.
+    scp - Secure copy (remote file copy program).
+    ftp - File Transfer Protocol.
+
+Text Processing
+
+    grep - Search text using patterns.
+    sed - Stream editor for filtering and transforming text.
+    awk - Pattern scanning and processing language.
+    sort - Sort lines of text files.
+    uniq - Report or omit repeated lines.
+    wc - Print newline, word, and byte counts for each file.
+
+Archive and Compression
+
+    tar - Archive files.
+    gzip - Compress files.
+    gunzip - Decompress files.
+    zip - Package and compress files.
+    unzip - Extract compressed files.
+
+Miscellaneous
+
+    echo - Display a line of text.
+    man - Display the manual for a command.
+    history - Show command history.
+    alias - Create an alias for a command.
+    date - Display or set the date and time.
+    whoami - Display the current user.
+
+Windows-Specific Commands in Bash
+
+    start - Use to open files or applications, similar to open on macOS:
